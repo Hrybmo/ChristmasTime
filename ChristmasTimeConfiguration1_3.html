@@ -63,9 +63,9 @@ $(document).ready(function(){
   // Load any previously saved configuration, if available
     if(localStorage['tempUnits']) {
 	
-	  tempSelect.options.value = localStorage['tempUnits'];
-      BackgroundSelect.options.value =localStorage['Background'];
-      isGPS.options.value = localStorage['isGPS'];
+	  tempSelect.value = localStorage['tempUnits'];
+      BackgroundSelect.value = localStorage['Background'];
+      isGPS.value = localStorage['isGPS'];
       latitude.innerHTML = localStorage['latitude'];
       longitude.innerHTML = localStorage['longitude'];
       zip.value = localStorage['zip'];
