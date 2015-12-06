@@ -140,8 +140,8 @@ $(document).ready(function(){
  
       options.get = saveOptions();
       var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
-       
-      document.location = location;
+      document.location = return_to + encodeURIComponent(JSON.stringify(options)); 
+      //document.location = location;
     }, 
   false);
   
