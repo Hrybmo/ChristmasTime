@@ -139,7 +139,9 @@ $(document).ready(function(){
       console.log("Submit");
  
       options.get = saveOptions();
-      var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
+	  
+	  // Set the return URL depending on the runtime environment
+      var return_to = getQueryParam('return_to', 'pebblejs://close#');
       document.location = return_to + encodeURIComponent(JSON.stringify(options)); 
       //document.location = location;
     }, 
