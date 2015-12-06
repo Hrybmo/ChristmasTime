@@ -52,25 +52,19 @@ var sLatitude = "";
 var sLongitude = "";
   
 $(document).ready(function(){
-  
-  //get sent data
-  /*
-  $("#latitude").text = getURLVariable("lat");
-  $("#longitude").text = getURLVariable("lng");
-  $("#Time_select").text = getURLVariable("time_units");
-  $("#weatherSource").text = getURLVariable("gps");
-  $("#zip").text = getURLVariable("zip");
-  $("#Background_select").text = getURLVariable("inv");
- //-----------------------------------------
- function getURLVariable(name)  {
-  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
-  var regexS = "[\\?&]"+name+"=([^&#]*)",
-      regex = new RegExp(regexS),
-      results = regex.exec(window.location.href);
-  if (results == null) return "";
-  else return results[1];
-}
-*/
+  // Load any previously saved configuration, if available
+    if(localStorage['tempUnits']) {
+	
+	  tempSelect.options[tempSelect.selectedIndex].value = localStorage['tempUnits'];
+      BackgroundSelect.options[BackgroundSelect.selectedIndex].value =localStorage['Background'];
+      isGPS.options[isGPS.selectedIndex].value = localStorage['isGPS'];
+      latitude.innerHTML = localStorage['latitude'];
+      longitude.innerHTML = localStorage['longitude'];
+      zip.value = localStorage['zip'];
+	
+      //highContrastCheckbox.checked = JSON.parse(localStorage['high_contrast']);
+      //backgroundColorPicker.value = localStorage['background_color'];
+    }
  
   $(".noGPSclass").hide();
 
@@ -130,6 +124,14 @@ $(document).ready(function(){
       "longitude": longitude.innerHTML,
       "zip": zip.value
     }
+	
+	// Save for next launch
+    localStorage['tempUnits'] = options['tempUnits'];
+    localStorage['Background'] = options['Background'];
+	localStorage['isGPS'] = options['isGPS'];
+    localStorage['latitude'] = options['latitude'];
+	localStorage['longitude'] = options['longitude'];
+    localStorage['zip'] = options['zip'];
     return options;
   };
   
