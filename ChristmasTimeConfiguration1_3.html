@@ -69,6 +69,12 @@ $(document).ready(function(){
       latitude.innerHTML = localStorage['latitude'];
       longitude.innerHTML = localStorage['longitude'];
       zip.value = localStorage['zip'];
+	  
+	  if ($('#weatherSource>option:selected').text() === "No GPS"){
+		 $(".noGPSclass").fadeIn();
+	  {
+      
+    }
 	
       //highContrastCheckbox.checked = JSON.parse(localStorage['high_contrast']);
       //backgroundColorPicker.value = localStorage['background_color'];
