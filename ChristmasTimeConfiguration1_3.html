@@ -1,0 +1,150 @@
+
+<html>
+<head>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+</head>
+  
+<h1 style="text-decoration: underline;">Christmas time config</h1>
+
+<p>Temperture select:
+<select id="temp_select">
+<option value="F">°F</option>
+<option value="C">°C</option>
+</select>
+</p>
+
+<p>Weather source:
+<select id="weatherSource">
+<option>GPS</option>
+<option>No GPS</option>
+</select>
+</p>
+
+<div class="noGPSclass">
+<p>ZIP code for weather
+<input type = "text" id="zip" >
+<button type = "button" id="zip_button">Submit</button>  
+
+<p id="latitude">Latitude:</p>
+<p id="longitude">Longitude:</p>
+</div>
+  
+<p>Background color select:
+<select id="Background_select">
+<option value="w">white</option>
+<option value="b">black</option>
+</select>
+</p>
+
+<p>Please make a donation if you can to help
+fund better weather (api fees) and new developments.
+Thanks! 
+<p>
+<img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/pp-acceptance-small.png" alt="Buy now with PayPal" />
+<a href="https://www.paypal.me/JJH4">-=DONATE=-</a> 
+<img src="https://www.paypalobjects.com/webstatic/en_US/i/buttons/pp-acceptance-small.png" alt="Buy now with PayPal" />
+
+<p> <button id="save_button">Save</button> </p>
+
+<script>
+var sLatitude = "";
+var sLongitude = "";
+  
+$(document).ready(function(){
+  
+  //get sent data
+  /*
+  $("#latitude").text = getURLVariable("lat");
+  $("#longitude").text = getURLVariable("lng");
+  $("#Time_select").text = getURLVariable("time_units");
+  $("#weatherSource").text = getURLVariable("gps");
+  $("#zip").text = getURLVariable("zip");
+  $("#Background_select").text = getURLVariable("inv");
+ //-----------------------------------------
+ function getURLVariable(name)  {
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)",
+      regex = new RegExp(regexS),
+      results = regex.exec(window.location.href);
+  if (results == null) return "";
+  else return results[1];
+}
+*/
+ 
+  $(".noGPSclass").hide();
+
+  //----------------------------------------
+  $("#zip_button").click(function(){
+    //console.log("zip button clicked");
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode( { 'address': $('#zip').val()}, function(results, status) {
+      if (status == google.maps.GeocoderStatus.OK) {
+	 sLatitude = results[0].geometry.location.lat();
+	 sLongitude = results[0].geometry.location.lng();
+	 $("#latitude").text(sLatitude);
+	 $("#longitude").text(sLongitude);
+      } else {
+	$("#latitude").text("Latitude: ERROR");
+	$("#longitude").text("Longitude: ERROR");
+      }
+    });
+  });
+  
+  $("#weatherSource").change(function(){
+    console.log("weather source changed to " + $('#weatherSource>option:selected').text());
+    if ($('#weatherSource>option:selected').text() === "No GPS") {
+      $(".noGPSclass").fadeIn();
+    }
+    else
+    {
+      $(".noGPSclass").fadeOut();
+    }
+   
+  })
+  
+})
+
+  var options = {
+      "tempUnits": 0,
+      "Background": 0,
+      "isGPS": 0,
+      "latitude": "",
+      "longitude": "",
+      "zip": ""
+    };
+  
+  //Setup to allow easy adding more options later
+  function saveOptions() {
+    var tempSelect = document.getElementById("temp_select");
+    var BackgroundSelect = document.getElementById("Background_select");
+    var isGPS = document.getElementById("weatherSource");
+    var latitude = document.getElementById('latitude');
+    var longitude = document.getElementById('longitude');
+    var zip = document.getElementById('zip');
+    options = {
+      "tempUnits": tempSelect.options[tempSelect.selectedIndex].value,
+      "Background": BackgroundSelect.options[BackgroundSelect.selectedIndex].value,
+      "isGPS": isGPS.options[isGPS.selectedIndex].value,
+      "latitude": latitude.innerHTML,
+      "longitude": longitude.innerHTML,
+      "zip": zip.value
+    }
+    return options;
+  };
+ //------------------------------------------------		
+  var submitButton = document.getElementById("save_button");
+  submitButton.addEventListener("click", 
+    function() {
+      console.log("Submit");
+ 
+      options.get = saveOptions();
+      var location = "pebblejs://close#" + encodeURIComponent(JSON.stringify(options));
+       
+      document.location = location;
+    }, 
+  false);
+  
+</script>
+</body>
+</html>
