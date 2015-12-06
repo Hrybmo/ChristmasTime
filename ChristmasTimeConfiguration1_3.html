@@ -47,9 +47,17 @@ Thanks!
 
 <p> <button id="save_button">Save</button> </p>
 
+
 <script>
 var sLatitude = "";
 var sLongitude = "";
+
+var tempSelect = document.getElementById("temp_select");
+var BackgroundSelect = document.getElementById("Background_select");
+var isGPS = document.getElementById("weatherSource");
+var latitude = document.getElementById('latitude');
+var longitude = document.getElementById('longitude');
+var zip = document.getElementById('zip');
   
 $(document).ready(function(){
   // Load any previously saved configuration, if available
@@ -110,12 +118,6 @@ $(document).ready(function(){
   
   //Setup to allow easy adding more options later
   function saveOptions() {
-    var tempSelect = document.getElementById("temp_select");
-    var BackgroundSelect = document.getElementById("Background_select");
-    var isGPS = document.getElementById("weatherSource");
-    var latitude = document.getElementById('latitude');
-    var longitude = document.getElementById('longitude');
-    var zip = document.getElementById('zip');
     options = {
       "tempUnits": tempSelect.options[tempSelect.selectedIndex].value,
       "Background": BackgroundSelect.options[BackgroundSelect.selectedIndex].value,
