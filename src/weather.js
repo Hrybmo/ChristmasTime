@@ -218,7 +218,7 @@ Pebble.addEventListener("showConfiguration",
       */
       //console.log(fullLink);
 		//https://www.dropbox.com/s/4dztzi0xclwlflo/ChristmasTimeConfiguration1_3.html?dl=0
-      Pebble.openURL("https://rawgit.com/Hrybmo/ChristmasTime/master/ChristmasTimeConfiguration1_3.html"); 
+      Pebble.openURL("http://Hrybmo.github.io"); 
     //}
   }
 );
