@@ -6,7 +6,6 @@ static void canvas_update_proc(Layer *this_layer, GContext *ctx);
   
 // globals 
 Window *s_window;
-GBitmap *s_res_frame1_color;
 #if defined(PBL_COLOR)
 GBitmap *s_res_frame_tree_1_color;
 GBitmap *s_res_frame_tree_2_color;
@@ -304,6 +303,7 @@ void ui_blkBackgroud(void)
 }
 
 void destroy_ui(void) {
+	//APP_LOG(APP_LOG_LEVEL_INFO, "destroy ui called");
   bitmap_layer_destroy(s_bitmaplayer_tree);
   text_layer_destroy(s_textlayer_day);
   text_layer_destroy(s_textlayer_date);
