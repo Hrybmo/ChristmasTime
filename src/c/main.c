@@ -7,7 +7,7 @@
 //module global
 static int uiColor;
 
-// Get weather update every 30 minutes
+// Get weather update every hour based on start time
 // update animation very second
 // update time, date, and battery every minute
 static void handle_second_tick(struct tm* tick_time, TimeUnits units_changed) {
@@ -32,8 +32,9 @@ static void handle_second_tick(struct tm* tick_time, TimeUnits units_changed) {
   static char temperature_lo_buffer[8];
   static char temperature_hi_lo_buffer[16];
   static char temperature_buffer[8];
-  //color
-  
+	//weather
+	static bool isFirstCall = true;
+	static int updateMinute = 0;
   
   //prevent crashing
   if(startDelay < 1)
@@ -41,6 +42,12 @@ static void handle_second_tick(struct tm* tick_time, TimeUnits units_changed) {
     startDelay++;
     return;
   }
+	
+	if(isFirstCall == true){
+		isFirstCall = false;
+		updateMinute = tick_time->tm_min;
+		APP_LOG(APP_LOG_LEVEL_INFO, "update time set to %i", updateMinute);
+	}
   
   //change color if needed
   if(CallBack_isInvertUiColor() != uiColor)
@@ -59,7 +66,7 @@ static void handle_second_tick(struct tm* tick_time, TimeUnits units_changed) {
     //isUpdateUI = 1;
   }
   //is weather update time 
-  if((tick_time->tm_min == 0) && (tick_time->tm_sec == 0)) {
+  if((tick_time->tm_min == updateMinute) && (tick_time->tm_sec == 0)) {
     CallBack_sendWeatherMessage();
   }
   

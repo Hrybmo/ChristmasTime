@@ -1,0 +1,102 @@
+{
+    "author": "john.hryb.4@gmail.com",
+    "dependencies": {},
+    "keywords": [],
+    "name": "christmas",
+    "pebble": {
+        "capabilities": [
+            "location",
+            "configurable"
+        ],
+        "displayName": "ChristmasTime",
+        "enableMultiJS": false,
+        "messageKeys": {
+            "KEY_CONDITIONS": 1,
+            "KEY_INVERT_UI": 5,
+            "KEY_IS_GPS": 7,
+            "KEY_JS_READY": 14,
+            "KEY_LATITUDE": 8,
+            "KEY_LONGITUDE": 9,
+            "KEY_PERSISTANT_MESSAGE": 12,
+            "KEY_TEMPERATURE": 0,
+            "KEY_TEMPERATURE_HI": 2,
+            "KEY_TEMPERATURE_LO": 3,
+            "KEY_TEMP_UNITS": 4,
+            "KEY_VERSION": 13,
+            "KEY_WEATHER_MESSAGE": 11,
+            "KEY_ZIP_CODE": 10
+        },
+        "projectType": "native",
+        "resources": {
+            "media": [
+                {
+                    "file": "images/frame-1_color.png",
+                    "name": "frame1_color",
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/frame-1_blk.png",
+                    "name": "frame_tree_1_blk",
+                    "targetPlatforms": [
+                        "aplite"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/frame-2_blk.png",
+                    "name": "frame_tree_2_blk",
+                    "targetPlatforms": [
+                        "aplite"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/frame-1.png",
+                    "name": "frame_tree_1",
+                    "targetPlatforms": [
+                        "aplite"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/frame-2.png",
+                    "name": "frame_tree_2",
+                    "targetPlatforms": [
+                        "aplite"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "file": "images/frame-2_color.png",
+                    "name": "frame2_color",
+                    "targetPlatforms": [
+                        "basalt",
+                        "chalk"
+                    ],
+                    "type": "bitmap"
+                },
+                {
+                    "characterRegex": "[0-9]",
+                    "file": "fonts/CFSnowBall-Regular.ttf",
+                    "name": "christmas_font_42",
+                    "type": "font"
+                }
+            ]
+        },
+        "sdkVersion": "3",
+        "targetPlatforms": [
+            "aplite",
+            "basalt",
+            "chalk"
+        ],
+        "uuid": "2128525f-6997-4a35-9433-f87d2a24a9cd",
+        "watchapp": {
+            "watchface": true
+        }
+    },
+    "version": "1.7.0"
+}
